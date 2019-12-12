@@ -1,0 +1,43 @@
+﻿@model PetGroomingManager.Models.Comm_Variety
+
+@{
+    ViewBag.Title = "新增品種";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var kindSN = ViewBag.kindSN;
+}
+
+<div class="systemGroup">
+    <h2>@ViewBag.Title</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input id="kinSN" name="kindSN" style="display:none" value="@kindSN" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">品種：</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.varietyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.varietyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="新增" class="btn btn-outline-success" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", new { kindSN = @kindSN})
+    </div>
+</div>

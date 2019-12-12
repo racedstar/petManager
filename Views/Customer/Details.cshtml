@@ -1,0 +1,79 @@
+﻿@model PetGroomingManager.Models.Comm_Customer
+<script src="~/Scripts/changeState.js"></script>
+@{
+    ViewBag.Title = "飼主資料";
+    var petList = ViewBag.petList;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="systemGroup">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            姓名：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+
+        <dt>
+            手機：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            地址:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            備註:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerRemark)
+        </dd>
+
+    </dl>
+
+    <table class="table">
+        <tr>
+            <th>寵物名</th>
+            <th>種類</th>
+            <th>品種</th>
+            <th></th>
+        </tr>
+        @foreach (var item in petList)
+        {
+            <tr>
+                <td><a href="../Pet/Details?SN=@item.petSN">@item.petName</a></td>
+                <td>@item.kindName</td>
+                <td>@item.varietyName</td>
+                <td>
+                    @if (item.isState == false)
+                    {
+                        <input type='button' id=@("btnState"+item.petSN) class="btn btn-info" onclick="changeState(@item.petSN)" value="進入美容室">
+                    }
+                    else
+                    {
+                        <input type='button' id=@("btnState"+item.petSN) class="btn btn-secondary" onclick="changeState(@item.petSN)" value="離開美容室">
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        @Html.ActionLink("修改", "Edit", new { SN = Model.SN }, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("返回顧客列表", "Index") |
+        <a href="javascript:history.go(-1)">返回上一頁</a>
+    </p>
+</div>

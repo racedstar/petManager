@@ -1,0 +1,74 @@
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+@model IEnumerable<PetGroomingManager.Models.Comm_Customer>
+<script src="~/Scripts/getJson.js"></script>
+
+@{
+    ViewBag.Title = "飼主管理列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="systemGroup">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col-md-6">
+            @using (@Html.BeginForm("View", "Customer"))
+            {
+                <input name="keyWord" class="form-control" style="display:inline" />
+                <input type="submit" value="搜尋" class="btn btn-success" />
+            }
+        </div>
+        <div class="col-md-6">
+            <p style="text-align:right">
+                @Html.ActionLink("新增飼主資料", "Create", "", new { @class = "btn btn-primary" })
+            </p>
+        </div>
+    </div>
+
+    <div id="test">
+        <table class="table">
+            <tr>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    手機
+                </th>
+                <th>
+                    地址
+                </th>
+                <th>
+
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.customerName
+                    </td>
+                    <td>
+                        @item.phone
+                    </td>
+                    <td>
+                        @item.address
+                    </td>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", new { SN = item.SN }, new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("詳細資料", "Details", new { SN = item.SN }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("消費紀錄", "Index", "Log", new { SN = item.SN }, new { @class = "btn btn-info" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+        {
+            ContainerDivClasses = new[] { "" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" },
+            MaximumPageNumbersToDisplay = 10
+        })
+    </div>
+
+</div>

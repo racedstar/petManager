@@ -1,0 +1,91 @@
+﻿@model PetGroomingManager.Models.Vw_Pet
+<script src="~/Scripts/changeState.js"></script>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    var gender = "女";
+    if (Model.petGender == true)
+    {
+        gender = "男";
+    }
+}
+
+<div class="systemGroup">
+    <h2>寵物詳細資料</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                寵物姓名
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.petName)
+            </dd>
+
+            <dt>
+                寵物性別
+            </dt>
+
+            <dd>
+                <label>@gender</label>
+            </dd>
+
+            <dt>
+                種類
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.kindName)
+            </dd>
+
+            <dt>
+                品種
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.varietyName)
+            </dd>
+
+            <dt>
+                飼主名稱
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.customerName)
+            </dd>
+
+            <dt>
+                手機
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone)
+            </dd>
+
+            <dt>
+                備註
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.petRemark)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @if (Model.isState == false)
+        {
+            <input type='button' id=@("btnState"+Model.petSN) class="btn btn-info" onclick="changeState(@Model.petSN)" value="進入美容室">
+        }
+        else
+        {
+            <input type='button' id=@("btnState"+Model.petSN) class="btn btn-secondary" onclick="changeState(@Model.petSN)" value="離開美容室">
+        }
+        @Html.ActionLink("修改", "Edit", new { SN = Model.petSN }, new { @class="btn btn-primary"}) |
+        @Html.ActionLink("返回寵物列表", "Index") |
+        <a href="javascript:history.go(-1)">返回上一頁</a>
+    </p>
+</div>

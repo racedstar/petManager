@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Entity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comm_Cosmetology">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cosmetologyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Customer">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="customerRemark" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Kind">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kindName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Log">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BillNumber" Type="int" Nullable="false" />
+    <Property Name="petSN" Type="int" Nullable="false" />
+    <Property Name="cosmetologySN" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Pet">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customerSN" Type="int" Nullable="false" />
+    <Property Name="petName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="petGender" Type="bit" Nullable="false" />
+    <Property Name="isState" Type="bit" Nullable="false" />
+    <Property Name="kindSN" Type="int" Nullable="false" />
+    <Property Name="varietySN" Type="int" Nullable="false" />
+    <Property Name="petRemark" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Variety">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kindSN" Type="int" Nullable="false" />
+    <Property Name="varietyName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'PetGroomingManager.dbo.Vw_Log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="Vw_Log">
+    <Key>
+      <PropertyRef Name="logSN" />
+      <PropertyRef Name="petSN" />
+      <PropertyRef Name="cosmetologySN" />
+      <PropertyRef Name="BillNumber" />
+      <PropertyRef Name="logPrice" />
+      <PropertyRef Name="CreateTime" />
+      <PropertyRef Name="Remark" />
+    </Key>
+    <Property Name="logSN" Type="int" Nullable="false" />
+    <Property Name="petSN" Type="int" Nullable="false" />
+    <Property Name="cosmetologySN" Type="int" Nullable="false" />
+    <Property Name="BillNumber" Type="int" Nullable="false" />
+    <Property Name="logPrice" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="customerSN" Type="int" />
+    <Property Name="petName" Type="nvarchar(max)" />
+    <Property Name="customerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="kindName" Type="nvarchar(max)" />
+    <Property Name="varietyName" Type="nvarchar(max)" />
+    <Property Name="cosmetologyName" Type="nvarchar(max)" />
+    <Property Name="price" Type="int" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'PetGroomingManager.dbo.Vw_Pet' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="Vw_Pet">
+    <Key>
+      <PropertyRef Name="petSN" />
+      <PropertyRef Name="petName" />
+      <PropertyRef Name="petGender" />
+      <PropertyRef Name="isState" />
+      <PropertyRef Name="petRemark" />
+    </Key>
+    <Property Name="petSN" Type="int" Nullable="false" />
+    <Property Name="petName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="petGender" Type="bit" Nullable="false" />
+    <Property Name="isState" Type="bit" Nullable="false" />
+    <Property Name="petRemark" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="customerSN" Type="int" />
+    <Property Name="customerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="kindSN" Type="int" />
+    <Property Name="kindName" Type="nvarchar(max)" />
+    <Property Name="varietySN" Type="int" />
+    <Property Name="varietyName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="EntityStoreContainer">
+    <EntitySet Name="Comm_Cosmetology" EntityType="Self.Comm_Cosmetology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comm_Customer" EntityType="Self.Comm_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comm_Kind" EntityType="Self.Comm_Kind" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comm_Log" EntityType="Self.Comm_Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comm_Pet" EntityType="Self.Comm_Pet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comm_Variety" EntityType="Self.Comm_Variety" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vw_Log" EntityType="Self.Vw_Log" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Vw_Log].[logSN] AS [logSN], 
+    [Vw_Log].[petSN] AS [petSN], 
+    [Vw_Log].[cosmetologySN] AS [cosmetologySN], 
+    [Vw_Log].[BillNumber] AS [BillNumber], 
+    [Vw_Log].[logPrice] AS [logPrice], 
+    [Vw_Log].[CreateTime] AS [CreateTime], 
+    [Vw_Log].[Remark] AS [Remark], 
+    [Vw_Log].[customerSN] AS [customerSN], 
+    [Vw_Log].[petName] AS [petName], 
+    [Vw_Log].[customerName] AS [customerName], 
+    [Vw_Log].[phone] AS [phone], 
+    [Vw_Log].[kindName] AS [kindName], 
+    [Vw_Log].[varietyName] AS [varietyName], 
+    [Vw_Log].[cosmetologyName] AS [cosmetologyName], 
+    [Vw_Log].[price] AS [price]
+    FROM [dbo].[Vw_Log] AS [Vw_Log]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Vw_Pet" EntityType="Self.Vw_Pet" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Vw_Pet].[petSN] AS [petSN], 
+    [Vw_Pet].[petName] AS [petName], 
+    [Vw_Pet].[petGender] AS [petGender], 
+    [Vw_Pet].[isState] AS [isState], 
+    [Vw_Pet].[petRemark] AS [petRemark], 
+    [Vw_Pet].[customerSN] AS [customerSN], 
+    [Vw_Pet].[customerName] AS [customerName], 
+    [Vw_Pet].[phone] AS [phone], 
+    [Vw_Pet].[kindSN] AS [kindSN], 
+    [Vw_Pet].[kindName] AS [kindName], 
+    [Vw_Pet].[varietySN] AS [varietySN], 
+    [Vw_Pet].[varietyName] AS [varietyName]
+    FROM [dbo].[Vw_Pet] AS [Vw_Pet]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

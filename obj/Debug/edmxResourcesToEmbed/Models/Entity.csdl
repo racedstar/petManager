@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Entity" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comm_Cosmetology">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cosmetologyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Customer">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="customerRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Kind">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kindName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Log">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BillNumber" Type="Int32" Nullable="false" />
+    <Property Name="petSN" Type="Int32" Nullable="false" />
+    <Property Name="cosmetologySN" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Pet">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerSN" Type="Int32" Nullable="false" />
+    <Property Name="petName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="petGender" Type="Boolean" Nullable="false" />
+    <Property Name="isState" Type="Boolean" Nullable="false" />
+    <Property Name="kindSN" Type="Int32" Nullable="false" />
+    <Property Name="varietySN" Type="Int32" Nullable="false" />
+    <Property Name="petRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comm_Variety">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kindSN" Type="Int32" Nullable="false" />
+    <Property Name="varietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vw_Log">
+    <Key>
+      <PropertyRef Name="logSN" />
+      <PropertyRef Name="petSN" />
+      <PropertyRef Name="cosmetologySN" />
+      <PropertyRef Name="BillNumber" />
+      <PropertyRef Name="logPrice" />
+      <PropertyRef Name="CreateTime" />
+      <PropertyRef Name="Remark" />
+    </Key>
+    <Property Name="logSN" Type="Int32" Nullable="false" />
+    <Property Name="petSN" Type="Int32" Nullable="false" />
+    <Property Name="cosmetologySN" Type="Int32" Nullable="false" />
+    <Property Name="BillNumber" Type="Int32" Nullable="false" />
+    <Property Name="logPrice" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="petName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="kindName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="varietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cosmetologyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="customerSN" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Vw_Pet">
+    <Key>
+      <PropertyRef Name="petSN" />
+      <PropertyRef Name="petName" />
+      <PropertyRef Name="petGender" />
+      <PropertyRef Name="isState" />
+      <PropertyRef Name="petRemark" />
+    </Key>
+    <Property Name="petSN" Type="Int32" Nullable="false" />
+    <Property Name="petName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="petGender" Type="Boolean" Nullable="false" />
+    <Property Name="isState" Type="Boolean" Nullable="false" />
+    <Property Name="petRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="customerSN" Type="Int32" />
+    <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="kindSN" Type="Int32" />
+    <Property Name="kindName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="varietySN" Type="Int32" />
+    <Property Name="varietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comm_Cosmetology" EntityType="Self.Comm_Cosmetology" />
+    <EntitySet Name="Comm_Customer" EntityType="Self.Comm_Customer" />
+    <EntitySet Name="Comm_Kind" EntityType="Self.Comm_Kind" />
+    <EntitySet Name="Comm_Log" EntityType="Self.Comm_Log" />
+    <EntitySet Name="Comm_Pet" EntityType="Self.Comm_Pet" />
+    <EntitySet Name="Comm_Variety" EntityType="Self.Comm_Variety" />
+    <EntitySet Name="Vw_Log" EntityType="Self.Vw_Log" />
+    <EntitySet Name="Vw_Pet" EntityType="Self.Vw_Pet" />
+  </EntityContainer>
+</Schema>

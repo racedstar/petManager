@@ -1,0 +1,47 @@
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+@model IEnumerable<PetGroomingManager.Models.Comm_Kind>
+@{
+    ViewBag.Title = "種類列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="systemGroup">
+    <h2>@ViewBag.Title</h2>
+
+    <div>
+        <p style="text-align:right">
+            @Html.ActionLink("新增種類", "Create", "", new { @class = "btn btn-primary" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    物種名稱
+                </th>
+                <th>
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kindName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", new { SN = item.SN }, new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("品種", "Index", "Variety", new { kindSN = item.SN }, new { @class = "btn btn-info" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+        {
+            ContainerDivClasses = new[] { "" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" },
+            MaximumPageNumbersToDisplay = 10
+        })
+    </div>
+</div>

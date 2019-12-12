@@ -1,0 +1,103 @@
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+@model IEnumerable<PetGroomingManager.Models.Vw_Pet>
+<script src="~/Scripts/changeState.js"></script>
+@{
+    ViewBag.Title = "寵物管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="systemGroup">
+    <h2>@ViewBag.Title</h2>
+
+    <div class="row" style="margin-bottom:1rem;">
+        <div class="col-md-6">            
+            @using (@Html.BeginForm("Index", "Pet"))
+            {
+                <input name="keyWord" class="form-control" style="display:inline"/>
+                <input type="submit" value="搜尋" class="btn btn-success" />                
+            }
+        </div>
+        <div class="col-md-6">
+            <p style="text-align:right">
+                @Html.ActionLink("新增寵物", "Create", "", new { @class = "btn btn-primary" })
+            </p>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                寵物名稱
+            </th>
+            <th>
+                性別
+            </th>
+            <th>
+                種類
+            </th>
+            <th>
+                品種
+            </th>
+            <th>
+                飼主名稱
+            </th>
+            <th>
+                手機
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="@item.petSN">
+                <td>
+                    @Html.DisplayFor(modelItem => item.petName)
+                </td>
+                <td>
+                    @if (item.petGender == false)
+                    {
+                        <label>女</label>
+                    }
+                    else
+                    {
+                        <label>男</label>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kindName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.varietyName)
+                </td>
+                <td>
+                    <a href="~/Customer/Details?SN=@item.customerSN">@Html.DisplayFor(modelItem => item.customerName)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @if (item.isState == false)
+                    {
+                        <input type='button' id=@("btnState"+item.petSN) class="btn btn-info" onclick="changeState(@item.petSN)" value="進入美容室">
+                    }
+                    else
+                    {
+                        <input type='button' id=@("btnState"+item.petSN) class="btn btn-secondary" onclick="changeState(@item.petSN)" value="離開美容室">
+                    }
+                    |
+                    @Html.ActionLink("修改", "Edit", new { SN = item.petSN }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("詳細資料", "Details", new { SN = item.petSN }, new { @class = "btn btn-info" }) |
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+    {
+        ContainerDivClasses = new[] { "" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        MaximumPageNumbersToDisplay = 10
+    })
+</div>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EntityStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Comm_Cosmetology">
+      <EntityTypeMapping TypeName="Entity.Comm_Cosmetology">
+        <MappingFragment StoreEntitySet="Comm_Cosmetology">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="cosmetologyName" ColumnName="cosmetologyName" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm_Customer">
+      <EntityTypeMapping TypeName="Entity.Comm_Customer">
+        <MappingFragment StoreEntitySet="Comm_Customer">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="customerRemark" ColumnName="customerRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm_Kind">
+      <EntityTypeMapping TypeName="Entity.Comm_Kind">
+        <MappingFragment StoreEntitySet="Comm_Kind">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="kindName" ColumnName="kindName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm_Log">
+      <EntityTypeMapping TypeName="Entity.Comm_Log">
+        <MappingFragment StoreEntitySet="Comm_Log">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+          <ScalarProperty Name="petSN" ColumnName="petSN" />
+          <ScalarProperty Name="cosmetologySN" ColumnName="cosmetologySN" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm_Pet">
+      <EntityTypeMapping TypeName="Entity.Comm_Pet">
+        <MappingFragment StoreEntitySet="Comm_Pet">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="customerSN" ColumnName="customerSN" />
+          <ScalarProperty Name="petName" ColumnName="petName" />
+          <ScalarProperty Name="petGender" ColumnName="petGender" />
+          <ScalarProperty Name="isState" ColumnName="isState" />
+          <ScalarProperty Name="kindSN" ColumnName="kindSN" />
+          <ScalarProperty Name="varietySN" ColumnName="varietySN" />
+          <ScalarProperty Name="petRemark" ColumnName="petRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm_Variety">
+      <EntityTypeMapping TypeName="Entity.Comm_Variety">
+        <MappingFragment StoreEntitySet="Comm_Variety">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="kindSN" ColumnName="kindSN" />
+          <ScalarProperty Name="varietyName" ColumnName="varietyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vw_Log">
+      <EntityTypeMapping TypeName="Entity.Vw_Log">
+        <MappingFragment StoreEntitySet="Vw_Log">
+          <ScalarProperty Name="customerSN" ColumnName="customerSN" />
+          <ScalarProperty Name="logSN" ColumnName="logSN" />
+          <ScalarProperty Name="petSN" ColumnName="petSN" />
+          <ScalarProperty Name="cosmetologySN" ColumnName="cosmetologySN" />
+          <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+          <ScalarProperty Name="logPrice" ColumnName="logPrice" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="petName" ColumnName="petName" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="kindName" ColumnName="kindName" />
+          <ScalarProperty Name="varietyName" ColumnName="varietyName" />
+          <ScalarProperty Name="cosmetologyName" ColumnName="cosmetologyName" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vw_Pet">
+      <EntityTypeMapping TypeName="Entity.Vw_Pet">
+        <MappingFragment StoreEntitySet="Vw_Pet">
+          <ScalarProperty Name="petSN" ColumnName="petSN" />
+          <ScalarProperty Name="petName" ColumnName="petName" />
+          <ScalarProperty Name="petGender" ColumnName="petGender" />
+          <ScalarProperty Name="isState" ColumnName="isState" />
+          <ScalarProperty Name="petRemark" ColumnName="petRemark" />
+          <ScalarProperty Name="customerSN" ColumnName="customerSN" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="kindSN" ColumnName="kindSN" />
+          <ScalarProperty Name="kindName" ColumnName="kindName" />
+          <ScalarProperty Name="varietySN" ColumnName="varietySN" />
+          <ScalarProperty Name="varietyName" ColumnName="varietyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

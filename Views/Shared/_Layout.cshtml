@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetGroomingManager</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    @*<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>*@
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <div class="">
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+            <div class="container">                
+                @Html.ActionLink("Pet-Manager", "BeautyRoom", "Pet", "",  new { @class = "navbar-brand js-scroll-trigger" })
+                <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
+                        data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav ml-auto">                        
+                        <li class="nav-item mx-0 mx-lg-1">@Html.ActionLink("美容室", "BeautyRoom", "Pet")</li>
+                        <li class="nav-item mx-0 mx-lg-1">@Html.ActionLink("飼主管理", "Index", "Customer")</li>
+                        <li class="nav-item mx-0 mx-lg-1">@Html.ActionLink("寵物管理", "Index", "Pet")</li>
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                            @Html.ActionLink("消費紀錄", "Index", "Log")
+                            <ul>
+                                <li>@Html.ActionLink("顧客清單", "Index", "Log")</li>
+                                <li>@Html.ActionLink("店內收入", "Index", "Home")</li>
+                            </ul>
+                        </li>*@
+                        <li class="nav-item mx-0 mx-lg-1">
+                            @Html.ActionLink("系統設置", "Index", "Kind")
+                            <ul>
+                                <li>@Html.ActionLink("設定寵物種類", "Index", "Kind")</li>
+                                <li>@Html.ActionLink("設定美容項目", "Index", "Cosmetology")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - PetGrooming</p>
+            </footer>
+        </div>
+    </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)        
+        @Scripts.Render("~/bundles/modernizr")
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+        @Scripts.Render("~/bundles/main")
+</body>
+</html>

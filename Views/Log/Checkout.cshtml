@@ -1,0 +1,83 @@
+﻿@model PetGroomingManager.Models.Vw_Pet
+
+@{
+    Layout = null;
+    var cosmetologySN = ViewBag.cosmetologySN;
+    var pet = ViewBag.pet;
+    var gender = "男";
+
+    if(pet.petGender == false)
+    {
+        gender = "女";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>結帳</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="~/Scripts/getJson.js"></script>
+    <script src="~/Scripts/checkout.js"></script>
+</head>
+<body>
+    <div style="margin:10px 15px;">
+        <div class="container" style="margin-bottom:30px">
+            <div class="row">
+                <span id="petSN" style="display:none;">@pet.petSN</span>
+                <div class="col-md-2">寵物名稱：@pet.petName</div>
+                <div class="col-md-2">寵物性別：@gender</div>
+                <div class="col-md-2">物種：@pet.kindName</div>
+                <div class="col-md-2">品種：@pet.varietyName</div>
+                <div class="col-md-4">備註：@pet.petRemark</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">飼主名稱：@pet.customerName</div>
+                <div class="col-md-6">電話：@pet.phone</div>
+            </div>
+
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <table id="billTable" class="table">
+                <thead>
+                    <tr>
+                        <td>
+                            項目
+                        </td>
+                        <td>
+                            金額
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="item">
+                        <td class="text-center">
+                            @Html.DropDownList("cosmetologySN", null, "請選擇", new { @class = "form-control ddlCosmetology", style = "display:inherit;", onclick = "getCosmetologyPrice(this)"})
+                        </td>
+                        <td>
+                            <span id="price" class="price">0</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align:center">
+                總金額：<span id="sumPrice">0</span>
+            </div>
+            <div style="text-align:center">
+                <input id="btnCheckout" class="btn btn-info" type="button" value="結帳" />
+                <input class="btn btn-dark" type="button" value="新增" onclick="addRow()" />
+            </div>
+        }
+    </div>
+    </body>
+</html>

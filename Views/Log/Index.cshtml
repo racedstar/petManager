@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PetGroomingManager.Models.Vw_Log>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string customerName = ViewBag.customerName;
+}
+
+<div class="systemGroup">
+    <div>
+        <div>
+            <h2>消費紀錄</h2>
+        </div>
+        <div style="text-align:right;">
+            <h4>飼主名稱：@customerName</h4>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                寵物名稱
+            </th>
+            <th>
+                物種
+            </th>
+            <th>
+                品種
+            </th>
+            <th>
+                服務項目
+            </th>
+            <th>
+                價格
+            </th>
+            <th>
+                日期
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            string CreateTime = item.CreateTime.ToString("yyyy/MM/dd");
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.petName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kindName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.varietyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cosmetologyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @CreateTime
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

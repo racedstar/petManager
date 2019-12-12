@@ -1,0 +1,78 @@
+﻿@model PetGroomingManager.Models.Comm_Pet
+@*取得varietyDropDownList用*@
+<script src="~/Scripts/getJson.js"></script>
+@{
+    ViewBag.Title = "新增寵物";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="systemGroup">
+    <h2>@ViewBag.Title</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">飼主</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("customerSN", null, "選擇飼主", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.customerSN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">寵物姓名</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.petName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.petName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">寵物性別</label>
+                <div class="col-md-10">
+                    <input type="radio" name="petGender" value="0">女<br>
+                    <input type="radio" name="petGender" value="1">男<br>                    
+                    @Html.ValidationMessageFor(model => model.petGender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">種類</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("kindSN", null, "種類", new { @class = "form-control", onChange = "getVariety()" })
+                    @Html.ValidationMessageFor(model => model.kindSN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">品種</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("varietySN", null, "品種", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.varietySN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">備註</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.petRemark, new { htmlAttributes = new { @class = "form-control" } })                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="新增" class="btn btn-outline-success" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("返回寵物列表", "Index")
+    </div>
+</div>
