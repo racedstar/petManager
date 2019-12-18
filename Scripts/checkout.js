@@ -13,12 +13,14 @@
                 cosmetologySN: '',
                 price: ''
             };
-            checkout.cosmetologySN = $('#' + $('.form-control.ddlCosmetology')[i].id).val();
-            checkout.price = $('#' + $('.price')[i].id).html();
-            console.log(checkout.cosmetologySN);
-            result.push(checkout);
+            let price = $('#' + $('.price')[i].id).html();
+            if (price != '') {
+                checkout.cosmetologySN = $('#' + $('.form-control.ddlCosmetology')[i].id).val();
+                checkout.price = price;
+                result.push(checkout);
+            }
         }        
-        createCheckout(result);
+        createCheckout(result);                
     });
 });
 
@@ -30,7 +32,8 @@ let createCheckout = (result) => {
         })
         .then((rs) => rs.text())
         .then((data) => {
-            alert(data);
+            alert(data);            
+            parent.$.fancybox.close();
         });
 };
 

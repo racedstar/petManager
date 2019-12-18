@@ -59,5 +59,4 @@ E:\RioStudio\PetGroomingManager\PetGroomingManager\bin\PagedList.Mvc.xml
 E:\RioStudio\PetGroomingManager\PetGroomingManager\bin\X.PagedList.dll
 E:\RioStudio\PetGroomingManager\PetGroomingManager\bin\X.PagedList.Mvc.Bootstrap4.dll
 E:\RioStudio\PetGroomingManager\PetGroomingManager\bin\X.PagedList.Mvc.dll
-E:\RioStudio\PetGroomingManager\PetGroomingManager\obj\Debug\PetGroomingManager.csprojAssemblyReference.cache
-E:\RioStudio\PetGroomingManager\PetGroomingManager\obj\Debug\PetGroomingManager.csproj.CopyComplete
+E:\RioStudio\PetGroomingManager\PetGroomingManager\obj\Debug\PetGroomingManager.csprojResolveAssemblyReference.cache

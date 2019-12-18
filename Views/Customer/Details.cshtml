@@ -73,6 +73,7 @@
 
     <p>
         @Html.ActionLink("修改", "Edit", new { SN = Model.SN }, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("消費紀錄", "Index", "Log", new { SN = Model.SN }, new { @class = "btn btn-info" }) |
         @Html.ActionLink("返回顧客列表", "Index") |
         <a href="javascript:history.go(-1)">返回上一頁</a>
     </p>
